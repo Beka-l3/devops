@@ -1,0 +1,40 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Beka", email = "b.talgat@innopolis.university"},
+]
+dependencies = [
+    "click==8.0.1",
+    "flask~=2.0",
+    "itsdangerous==2.0.1",
+    "jinja2==3.0.1",
+    "markupsafe==2.0.1",
+    "pytz==2021.1",
+    "werkzeug==2.0.1",
+    "black~=21.7b0",
+    "isort~=5.9",
+    "pylint~=2.10",
+]
+requires-python = ">=3.9"
+dynamic = ["classifiers"]
+license = {text = "MIT"}
+
+[project.urls]
+homepage = ""
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
+
+[tool]
+[tool.pdm]
+[[tool.pdm.source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+[[tool.pdm.source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true

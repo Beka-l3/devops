@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    height: 100%;
+
+    /* background-image: linear-gradient(to top, rgba(13,13,13, 1), rgba(13,13,13, 0)), url('../img/ZKD.jpg'); */
+    /* background-image: linear-gradient(to top, rgba(8,8,8, 1), rgba(8,8,8, 0)), url('../img/ZKD.jpg'); */
+    /* background-image: linear-gradient(to top, rgba(3,3,3, 1), rgba(3,3,3, 0)), url('../img/ZKD.jpg'); */
+    background-image: linear-gradient(to top, rgba(0,0,0, 1), rgba(0,0,0, 0)), url('../img/ZKD.jpg');
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 18%;
+    background-size: cover;
+}
+
+div {
+    padding-top: 28%;
+    padding-bottom: 30%;
+    
+    font-size: 60px;
+    font-family: "Arial", sans-serif;
+    color: #f5f5f5;
+    text-shadow: #f5f5f5 0px 0px 10px;
+
+    text-align: center;
+    position: center;
+}
