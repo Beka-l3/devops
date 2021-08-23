@@ -11,7 +11,7 @@ pip install pdm
 pdm install
 ```
 
-## RUN
+## Run
 Command consequencies:
 ```
 pdm run python3 app.py
@@ -24,12 +24,12 @@ Browse: localhost:80
 
 Image is on my dockerhub
 
-# Pull
+## Pull
 ```
 docker pull beka13/python_app
 ```
 
-# Run
+## Run
 ```
 docker run -p <local port>:80 beka13/python_app
 ```
