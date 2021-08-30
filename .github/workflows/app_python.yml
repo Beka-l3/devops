@@ -46,7 +46,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm install
+        pdm install -v
     
     - name: Run linters
       run: |
