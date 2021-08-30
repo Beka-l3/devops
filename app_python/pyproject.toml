@@ -17,7 +17,7 @@ dependencies = [
     "isort~=5.9",
     "pylint~=2.10",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dynamic = ["classifiers"]
 license = {text = "MIT"}
 
