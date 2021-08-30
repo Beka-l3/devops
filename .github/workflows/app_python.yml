@@ -46,8 +46,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pip uninstall resolvelib
-        pdm install -v
+        python -m pdm install -v
     
     - name: Run linters
       run: |
