@@ -38,14 +38,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install tox${{ matrix.tox-version }} tox-gh-actions pdm .
-    
-    - name: Run linters
-      run: |
-        pdm run pylint --rcfile=.pylintrc ${{ env.CODE }}
-    
-    - name: Run tests
-      run: |
-        pdm run python -m pytest --cov=app ${{ env.TESTS }}
+
       
     
     
