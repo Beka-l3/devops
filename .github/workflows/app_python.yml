@@ -24,14 +24,14 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.APP_PATH }}
+    strategy:
+        matrix:
+          python-version: [3.8, 3.9]
   
     steps:
     - name: Install Python
       uses: actions/setup-python@v2
-      with:
-       python-version: 3.9
-     
-
+      
     - uses: pdm-project/setup-pdm@v2.1
       name: Setup PDM
       with:
