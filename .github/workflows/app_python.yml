@@ -42,7 +42,8 @@ jobs:
         enable-pep582: true  # Enable PEP 582 package loading globally
         
     - name: Install dependencies
-      run: pdm install  
+      run: |
+        pdm install
     
     - name: Run linters
       run: |
@@ -50,7 +51,7 @@ jobs:
     
     - name: Run tests
       run: |
-        poetry run python -m pytest --cov=app ${{ env.TESTS }}
+        pdm run python -m pytest --cov=app ${{ env.TESTS }}
       
     
     
