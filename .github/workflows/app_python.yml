@@ -43,7 +43,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm install
+        pdm install python -m
     
     - name: Run linters
       run: |
