@@ -29,9 +29,11 @@ jobs:
           python-version: [3.8, 3.9]
   
     steps:
-    - name: Install Python
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
-      with: ${{ matrix.python-version }}
+      with:
+        python-version: ${{ matrix.python-version }}
       
     - uses: pdm-project/setup-pdm@v2.1
       name: Setup PDM
