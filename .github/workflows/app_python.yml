@@ -46,7 +46,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm install --no-interaction --no-root
+        pdm install
     
     - name: Run linters
       run: |
