@@ -19,7 +19,7 @@ dependencies = [
     "pytest~=6.2",
     "requests~=2.26",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dynamic = ["classifiers"]
 license = {text = "MIT"}
 
