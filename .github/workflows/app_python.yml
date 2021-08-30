@@ -55,7 +55,7 @@ jobs:
     
     - name: Run tests
       run: |
-        pdm run python -m pytest --cov=app ${{ env.TESTS }}
+        pdm run python -m pytest ${{ env.TESTS }}
       
     
     
