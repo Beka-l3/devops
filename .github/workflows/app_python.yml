@@ -49,6 +49,11 @@ jobs:
       run: |
         pdm install -v
     
+    - name: Run code formatting
+      run: |
+        pdm run black app.py
+        pdm run isort app.py
+      
     - name: Run linters
       run: |
         pdm run pylint ${{ env.CODE }}
