@@ -38,7 +38,7 @@ jobs:
     - uses: pdm-project/setup-pdm@v2.1
       name: Setup PDM
       with:
-        python-version: ${{ matrix.python-version }}  # Version range or exact version of a Python version to use, the same as actions/setup-python
+        python-version: ${{ matrix.python-version }}  
         architecture: x64    # The target architecture (x86, x64) of the Python interpreter. the same as actions/setup-python
         version: 1.8.0       # The version of PDM to install. Leave it as empty to use the latest version from PyPI
         prerelease: true     # Allow prerelease versions to be installed
