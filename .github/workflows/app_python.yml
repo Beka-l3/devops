@@ -1,0 +1,60 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow will install Deno then run Deno lint and test.
+# For more information see: https://github.com/denoland/setup-deno
+
+name: app_python
+
+on:
+  push:
+    branches: [master]
+
+env:
+  APP_PATH: ./app_python  # source root
+  TESTS: test  # package with tests (inside source root)
+  IMAGE_NAME: beka13/python_app  # name for Docker image
+
+
+jobs:
+  lint_test:  # Run linters and test application
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.APP_PATH }}
+  
+    steps:
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+       python-version: 3.9
+     
+
+    - name: Setup PDM
+      with:
+        python-version: 3.8  # Version range or exact version of a Python version to use, the same as actions/setup-python
+        architecture: x64    # The target architecture (x86, x64) of the Python interpreter. the same as actions/setup-python
+        version: 1.8.0       # The version of PDM to install. Leave it as empty to use the latest version from PyPI
+        prerelease: true     # Allow prerelease versions to be installed
+        enable-pep582: true  # Enable PEP 582 package loading globally
+        
+    - name: Install dependencies
+      run: pdm install  
+    
+    - name: Run linters
+      run: |
+        pdm run pylint --rcfile=.pylintrc ${{ env.CODE }}
+    
+    - name: Run tests
+      run: |
+        poetry run python -m pytest --cov=app ${{ env.TESTS }}
+      
+    
+    
+    
+    
+    
+    
+    
