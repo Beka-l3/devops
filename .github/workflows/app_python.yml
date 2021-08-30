@@ -14,6 +14,7 @@ on:
 
 env:
   APP_PATH: ./app_python  # source root
+  CODE: app.py  # source code
   TESTS: test  # package with tests (inside source root)
   IMAGE_NAME: beka13/python_app  # name for Docker image
 
@@ -50,7 +51,7 @@ jobs:
     
     - name: Run linters
       run: |
-        pdm run pylint
+        pdm run pylint ${{ env.CODE }}
     
     - name: Run tests
       run: |
