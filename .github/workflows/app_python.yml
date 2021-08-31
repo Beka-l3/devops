@@ -62,13 +62,12 @@ jobs:
       run: |
         pdm run python -m pytest ${{ env.TESTS }}
       
-    
   push_to_registry:
-    needs: ["lint_test"]  
-    name: Push Docker image to Dockerhub
-    runs_on: ubuntu-latest
+    needs: ["lint_test"]
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
     env:
-      REGISTRY: beka13
+      REGISTRY: nufusrufus
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
