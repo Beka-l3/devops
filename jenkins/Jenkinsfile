@@ -4,12 +4,13 @@ pipeline {
         PDM_VERSION = '1.8.0'
         APP_PATH = 'app_python'
         CODE = 'app.py'
-        TESTS = 'tests'
+        TESTS = 'test'
         IMAGE_NAME = 'python_app'
         DOCKER_HUB_USERNAME = 'beka13'
     }
     agent { 
         dockerfile { 
+            dir 'jenkins'
             args '-u root -v $HOME/.cache:/root/.cache -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
