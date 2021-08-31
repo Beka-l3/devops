@@ -62,7 +62,7 @@ jobs:
       run: |
         pdm run python -m pytest ${{ env.TESTS }}
       
-  push_to_registry:
+  push_to_registry: # push image to dockerhub
     needs: ["lint_test"]
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
