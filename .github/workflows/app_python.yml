@@ -106,7 +106,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       
       - name: Scan Docker image
-          run: Docker scan ${{ env.REGISTRY }}/${{ github.event.repository.name }}:ci-${{ github.sha }}
+          run: docker scan ${{ env.REGISTRY }}/${{ github.event.repository.name }}:ci-${{ github.sha }}
     
     
     
