@@ -1,0 +1,63 @@
+pipeline {
+
+    environment {
+        PDM_VERSION = '1.8.0'
+        APP_PATH = 'app_python'
+        CODE = 'app.py'
+        TESTS = 'tests'
+        IMAGE_NAME = 'python_app'
+        DOCKER_HUB_USERNAME = 'beka13'
+    }
+    agent { 
+        dockerfile { 
+            args '-u root -v $HOME/.cache:/root/.cache -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    stages {
+        stage('deps') {
+            steps {
+                dir("${APP_PATH}") {
+                    sh 'pdm install'
+                }
+            }
+        }
+        stage('lint-test') {
+            steps {
+                parallel (
+                    'codestyle': {
+                        dir("${APP_PATH}") {
+                            sh 'pdm run isort ${CODE}'
+                            sh 'pdm run black ${CODE}'
+                        }
+                    },
+                    'lint': {
+                        dir("${APP_PATH}") {
+                            sh 'pdm run pylint ${CODE}'
+                        }
+                    }, 
+                    'test': {
+                        dir("${APP_PATH}") {
+                            sh 'pdm run python -m pytest ${CODE}'
+                        }
+                    }
+                )
+                
+            }
+        }
+        stage('build') {
+            steps {
+                dir("${APP_PATH}") {
+                    script {
+                        def image = docker.build('$DOCKER_HUB_USERNAME/$IMAGE_NAME:latest', '-f ./Dockerfile .')
+                        docker.withRegistry('', 'docker-hub-credentials') {
+                            image.push()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        cleanup { cleanWs() }
+    }
+}
