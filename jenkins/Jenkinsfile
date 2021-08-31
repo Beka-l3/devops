@@ -6,7 +6,7 @@ pipeline {
         CODE = 'app.py'
         TESTS = 'test'
         IMAGE_NAME = 'python_app'
-        DOCKER_HUB_USERNAME = 'beka13'
+        DOCKERHUB_USERNAME = 'beka13'
     }
     agent { 
         dockerfile { 
@@ -54,7 +54,7 @@ pipeline {
             steps {
                 dir("${APP_PATH}") {
                     script {
-                        def image = docker.build('$DOCKER_HUB_USERNAME:jenci-$BUILD_NUMBER')
+                        def image = docker.build('$DOCKERHUB_USERNAME/$IMAGE_NAME:latest')
                         docker.withRegistry('', 'dockerhub') {
                             image.push()
                         }
