@@ -52,7 +52,7 @@ pipeline {
         }
         stage('Build and Deploy') {
             steps {
-                dir("${app_dir}") {
+                dir("${APP_PATH}") {
                     script {
                         def image = docker.build('$DOCKER_HUB_USERNAME:jenci-$BUILD_NUMBER')
                         docker.withRegistry('', 'dockerhub') {
