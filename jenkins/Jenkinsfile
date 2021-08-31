@@ -15,6 +15,11 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('deps') {
             steps {
                 dir("${APP_PATH}") {
