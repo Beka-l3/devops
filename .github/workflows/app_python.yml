@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: beka13
-      WORKINGDIR: app_python
+      IMAGENAME: python_app
       TAG: latest
     steps:
       - name: Check out the repo
@@ -103,12 +103,12 @@ jobs:
           context: ./app_python
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.WORKINGDIR }}:${{ env.TAG }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGENAME }}:${{ env.TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       
-      - name: Scan Docker image
-        run: docker scan ${{ env.REGISTRY }}/${{ env.WORKINGDIR }}:${{ env.TAG }}
+      # - name: Scan Docker image
+      #   run: docker scan ${{ env.IMAGENAME }}/${{ env.WORKINGDIR }}:${{ env.TAG }}
     
     
     
