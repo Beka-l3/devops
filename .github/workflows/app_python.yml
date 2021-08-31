@@ -68,6 +68,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY: beka13
+      WORKINGDIR: app_python
+      TAG: latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -101,7 +103,7 @@ jobs:
           context: ./app_python
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.event.repository.name }}:ci-${{ github.sha }}
+          tags: ${{ env.REGISTRY }}/${{ env.WORKINGDIR }}:${{ env.TAG }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       
