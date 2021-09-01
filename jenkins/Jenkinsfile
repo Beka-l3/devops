@@ -55,7 +55,7 @@ pipeline {
                 dir("${APP_PATH}") {
                     script {
                         def image = docker.build('$DOCKERHUB_USERNAME/$IMAGE_NAME:latest')
-                        docker.withRegistry('', 'dockerhub') {
+                        docker.withRegistry('', 'docker') {
                             image.push()
                         }
                     }
