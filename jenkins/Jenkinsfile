@@ -6,7 +6,7 @@ pipeline {
         CODE = 'app.py'
         TESTS = 'test'
         registry = "beka13/python_app" 
-        registryCredential = 'dockerhubCredentials' 
+        registryCredential = 'dockerhub_id' 
         dockerImage = '' 
     }
     agent { 
