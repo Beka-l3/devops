@@ -51,18 +51,18 @@ pipeline {
                 
             }
         }
-        stage('Build and Deploy') {
-            steps {
-                dir("${APP_PATH}") {
-                    script {
-                        def image = docker.build('$DOCKERHUB_USERNAME/$IMAGE_NAME:latest', '-f ./Dockerfile .')
-                        docker.withRegistry('', 'docker-hub-credentials') {
-                            image.push()
-                        }
-                    }
-                }
-            }
-        }
+        // stage('Build and Deploy') {
+        //     steps {
+        //         dir("${APP_PATH}") {
+        //             script {
+        //                 def image = docker.build('$DOCKERHUB_USERNAME/$IMAGE_NAME:latest', '-f ./Dockerfile .')
+        //                 docker.withRegistry('', 'docker-hub-credentials') {
+        //                     image.push()
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         stage('Building our image') { 
             steps { 
                 script { 
