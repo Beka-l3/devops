@@ -43,7 +43,7 @@ pipeline {
                     }, 
                     'test': {
                         dir("${APP_PATH}") {
-                            sh 'pdm run python -m pytest ${CODE}'
+                            sh 'pdm run python -m pytest ${TESTS}'
                         }
                     }
                 )
