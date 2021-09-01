@@ -51,18 +51,6 @@ pipeline {
                 
             }
         }
-        // stage('Build and Deploy') {
-        //     steps {
-        //         dir("${APP_PATH}") {
-        //             script {
-        //                 def image = docker.build('$DOCKERHUB_USERNAME/$IMAGE_NAME:latest', '-f ./Dockerfile .')
-        //                 docker.withRegistry('', registryCredential) {
-        //                     image.push()
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
         stage('Build docker image') {
             steps{
                 dir("${APP_PATH}") {
