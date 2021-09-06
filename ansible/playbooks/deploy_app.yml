@@ -1,7 +1,7 @@
 
 ---
 - name: Deploy app from docker-compose.yml
-  hosts: web
+  hosts: aws
   become: yes
   roles:
-    - ../roles/deploy_app
+    - ../roles/deploy

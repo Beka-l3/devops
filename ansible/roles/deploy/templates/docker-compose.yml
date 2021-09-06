@@ -1,7 +1,8 @@
-version: "3.9"
+version: '3'
+
 services:
-  web:
-    image: "{{ docker_image_name }}:{{ docker_image_version }}"
+  aws:
+    build: .
+    image: "{{ docker_image }}:{{ image_version }}"
     ports:
-      - "8000:8000"
-    restart: always
+      - "3030:80"
