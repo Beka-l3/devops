@@ -75,5 +75,6 @@ service/my-app       LoadBalancer   10.107.235.2   <pending>     8080:31914/TCP 
 minikube start
 minikube dashboard
 ```
+<img width="1440" alt="Screenshot 2021-09-20 at 21 49 30" src="https://user-images.githubusercontent.com/61314408/134058255-a5fa9f6e-67a6-4551-b2ab-df158888d041.png">
 
 
