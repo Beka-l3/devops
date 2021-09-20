@@ -70,3 +70,10 @@ service/kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP        
 service/my-app       LoadBalancer   10.107.235.2   <pending>     8080:31914/TCP   23s
 ```
 
+## 4 
+```
+minikube start
+minikube dashboard
+```
+
+
