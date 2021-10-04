@@ -1,10 +1,10 @@
 FROM python:3.9-slim
 WORKDIR /app
 
-RUN adduser beka && chown -R beka /app
+RUN adduser --disabled-password beka && chown -R beka /app
 RUN mkdir /pyapp-tmp-dir && chown -R beka /pyapp-tmp-dir
 
-USER beka
+# USER beka
 
 COPY pyproject.toml .
 COPY pdm.lock .

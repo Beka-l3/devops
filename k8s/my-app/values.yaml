@@ -5,10 +5,10 @@
 replicaCount: 3
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: beka13/python_app
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
   
 
 secrets:
@@ -18,6 +18,15 @@ secrets:
 configmap:
     name: my-configmap
     enabled: false
+
+
+envs:
+  filepath: /visits.txt
+
+volumeClaim:
+  name: visits
+  storage: 64Mi
+  mountPath: /app_python/
 
 statefulSet:
   podManagementPolicy: "Parallel"

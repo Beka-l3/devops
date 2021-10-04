@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ include "my-app.fullname" . }}
-  labels:
-    {{- include "my-app.labels" . | nindent 4 }}
+  labels: {{- include "my-app.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -50,16 +49,12 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name: MY_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.name }}
-                  key: key
+            - name: FILEPATH
+              value: {{ .Values.envs.filepath }}
           volumeMounts:
-            # - name: config-volume
-            - name: no-visits
-              mountPath: config.json
-              subPath: config.json
+            - name: {{ .Values.volumeClaim.name }}
+              mountPath: {{ .Values.volumeClaim.mountPath }}
+
       # volumes:
       #   - name: config-volume
       #     configMap:
@@ -79,7 +74,10 @@ spec:
       {{- end }}
 
   volumeClaimTemplates:
-      - metadata:
-          name: no-visits
-        spec:
-          {{- toYaml .Values.statefulSet.volumeClaimTemplates.spec | nindent 10 }}
+  - metadata:
+      name: {{ .Values.volumeClaim.name }}
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.volumeClaim.storage }}
