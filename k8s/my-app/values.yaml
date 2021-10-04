@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: nginx
@@ -17,6 +17,16 @@ secrets:
 
 configmap:
     name: my-configmap
+    enabled: false
+
+statefulSet:
+  podManagementPolicy: "Parallel"
+  volumeClaimTemplates:
+    spec: 
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 256M
 
 imagePullSecrets: []
 nameOverride: ""
@@ -45,7 +55,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  name: app-service
+  type: LoadBalancer
   port: 80
 
 ingress:

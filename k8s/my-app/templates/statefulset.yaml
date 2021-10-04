@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "my-app.fullname" . }}
   labels:
@@ -8,6 +8,8 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  serviceName: {{ .Values.service.name }}
+  podManagementPolicy: {{ .Values.statefulSet.podManagementPolicy }}
   selector:
     matchLabels:
       {{- include "my-app.selectorLabels" . | nindent 6 }}
@@ -54,13 +56,14 @@ spec:
                   name: {{ .Values.secrets.name }}
                   key: key
           volumeMounts:
-            - name: config-volume
+            # - name: config-volume
+            - name: no-visits
               mountPath: config.json
               subPath: config.json
-      volumes:
-        - name: config-volume
-          configMap:
-            name: {{ .Values.configmap.name }}
+      # volumes:
+      #   - name: config-volume
+      #     configMap:
+      #       name: {{ .Values.configmap.name }}
 
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -74,3 +77,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+  volumeClaimTemplates:
+      - metadata:
+          name: no-visits
+        spec:
+          {{- toYaml .Values.statefulSet.volumeClaimTemplates.spec | nindent 10 }}
